@@ -122,7 +122,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9000;background:repeating-
 .simon-pad.active[data-id="3"]{box-shadow:0 0 30px rgba(77,208,225,.9)}
 
 /* DJ PAD */
-.dj-wrap{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;gap:8px;padding:8px 10px 90px;overflow-y:auto}
+.dj-wrap{width:100%;height:80%;display:flex;flex-direction:column;align-items:center;gap:8px;padding:8px 10px 90px;overflow-y:auto}
 .dj-controls{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:390px;padding:0 4px}
 .dj-bpm-row{display:flex;align-items:center;gap:8px}
 .dj-bpm-btn{font-family:'Orbitron',sans-serif;font-size:.7rem;color:var(--cyan);border:1px solid var(--dim);background:transparent;width:32px;height:32px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:center}
@@ -153,10 +153,10 @@ body::after{content:'';position:fixed;inset:0;z-index:9000;background:repeating-
 .react-row{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--dim);letter-spacing:.1em}
 
 /* BREAKOUT */
-#brk-cv{display:block;width:100%;height:100%;touch-action:none}
+#brk-cv{display:block;width:100%;height:90%;touch-action:none}
 
 /* COLOR GAME */
-.cg-wrap{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;gap:14px;padding:16px 18px 90px;overflow-y:auto}
+.cg-wrap{width:100%;height:80%;display:flex;flex-direction:column;align-items:center;gap:14px;padding:16px 18px 90px;overflow-y:auto}
 .cg-title{font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--dim)}
 .cg-swatches{display:flex;gap:8px;width:100%;max-width:360px}
 .cg-swatch{flex:1;aspect-ratio:.6;border-radius:10px;border:2px solid transparent;transition:border-color .2s,transform .15s}
@@ -467,7 +467,7 @@ function initWeather(){
 ══════════════════════════════════ */
 function initASCII(){
   const wrap=document.createElement('div');
-  wrap.style.cssText='width:100%;height:100%;background:#000;display:flex;flex-direction:column;overflow:hidden;position:relative;';
+  wrap.style.cssText='width:100%;height:90%;background:#000;display:flex;flex-direction:column;overflow:hidden;position:relative;';
   content.appendChild(wrap);
 
   const topBar=document.createElement('div');topBar.className='asc-topbar';
@@ -524,7 +524,7 @@ function initASCII(){
   };
 
   document.getElementById('asc-snap').onclick=()=>{
-    const fl=document.createElement('div');fl.style.cssText='position:absolute;inset:0;background:#fff;pointer-events:none;animation:flash .35s ease forwards;z-index:5;';area.appendChild(fl);setTimeout(()=>fl.remove(),400);
+    const fl=document.createElement('div');fl.style.cssText='position:absolute;inset:0;background:#fff;pointer-events:none;animation:flash .75s ease forwards;z-index:5;';area.appendChild(fl);setTimeout(()=>fl.remove(),400);
     ascCV.toBlob(async blob=>{
       const file=new File([blob],`ascii-${Date.now()}.png`,{type:'image/png'});
       try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'ASCII Photo'});}else{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);}}catch{}
