@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#050508">
+<title>iPOCKET</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Safe area top patcher — runs before anything else -->
+<script>
+(function(){
+  var p=document.createElement('div');
+  p.style.cssText='position:fixed;top:env(safe-area-inset-top,59px);left:0;pointer-events:none;opacity:0;';
+  document.documentElement.appendChild(p);
+  function apply(){
+    var r=p.getBoundingClientRect();
+    var root=document.documentElement;
+    root.style.setProperty('--st',Math.max(r.top,59)+'px');
+    root.style.setProperty('--safe-top',Math.max(r.top,59)+'px');
+  }
+  apply();
+  setTimeout(apply,80);
+  setTimeout(apply,400);
+  window.addEventListener('resize',apply);
+  window.addEventListener('orientationchange',function(){setTimeout(apply,300);});
+}());
+</script>
+
+<!-- HOME SCREEN -->
+<div id="home">
+  <div id="logo-wrap">
+    <div id="title" data-text="iPOCKET">iPOCKET</div>
+    <div id="tagline">v4.7 — Your Pocket OS</div>
+  </div>
+  <div id="home-date"></div>
+  <div id="grid"></div>
+</div>
+
+<!-- APP LAYER -->
+<div id="layer">
+  <div id="app-content"></div>
+  <div id="swipe-hint"></div>
+</div>
+
+<!-- Core engine (must load first) -->
+<script src="js/core.js"></script>
+
+<!-- All apps -->
+<script src="js/apps/clock.js"></script>
+<script src="js/apps/sparks.js"></script>
+<script src="js/apps/weather.js"></script>
+<script src="js/apps/ascii.js"></script>
+<script src="js/apps/screensaver.js"></script>
+<script src="js/apps/snake.js"></script>
+<script src="js/apps/simon.js"></script>
+<script src="js/apps/djpad.js"></script>
+<script src="js/apps/flappy.js"></script>
+<script src="js/apps/pong.js"></script>
+<script src="js/apps/reaction.js"></script>
+<script src="js/apps/breakout.js"></script>
+<script src="js/apps/colorgame.js"></script>
+<script src="js/apps/benchmark.js"></script>
+<script src="js/apps/2048.js"></script>
+
+<!-- Boot (runs after all apps are defined) -->
+<script src="js/boot.js"></script>
+
+</body>
+</html>
