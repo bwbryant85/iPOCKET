@@ -44,8 +44,8 @@ function initSports() {
   const headerTop = document.createElement('div');
   headerTop.style.cssText = 'display:flex;align-items:center;gap:12px;margin-bottom:14px;';
   headerTop.innerHTML = `
-    <button id="sp-back" style="display:none;font-family:'Orbitron',sans-serif;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);background:transparent;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;padding:4px 0;flex-shrink:0;">← Back</button>
-    <div id="sp-title" style="font-family:'Orbitron',sans-serif;font-size:.65rem;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan);text-shadow:var(--gc);flex:1;">⚡ Sports</div>
+    <button id="sp-back" style="display:none;font-family:'Orbitron',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);background:transparent;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;padding:6px 0;flex-shrink:0;text-shadow:var(--gc);">← Back</button>
+    <div id="sp-title" style="font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);text-shadow:var(--gc);flex:1;">⚡ Sports</div>
     <div id="sp-live-badge" style="display:none;font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;background:#c62828;color:#fff;padding:3px 8px;border-radius:8px;box-shadow:0 0 10px rgba(198,40,40,.7);animation:sp-blink 1.2s infinite;">● LIVE</div>`;
   header.appendChild(headerTop);
 
