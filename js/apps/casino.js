@@ -1,8 +1,13 @@
 /* ════════════ CASINO 🎰 ════════════ */
 function initCasino() {
 
-  /* ── Shared wallet ── */
-  let COINS = 1000;
+  /* ── Shared wallet — persists via localStorage ── */
+  const WALLET_KEY = 'ipocket_casino_coins';
+  let COINS = (() => {
+    try { const v = parseInt(localStorage.getItem(WALLET_KEY)); return (isNaN(v) || v < 0) ? 1000 : v; }
+    catch(e) { return 1000; }
+  })();
+  const saveCoins = () => { try { localStorage.setItem(WALLET_KEY, COINS); } catch(e) {} };
   let activeGame = null;
 
   /* ── Root ── */
@@ -59,6 +64,7 @@ function initCasino() {
   const updateWallet = (delta, el) => {
     COINS += delta;
     if (COINS < 0) COINS = 0;
+    saveCoins();
     document.getElementById('cs-wallet').textContent = `🪙 ${COINS.toLocaleString()}`;
     // Floating coin animation
     if (delta !== 0 && el) {
@@ -122,7 +128,7 @@ function initCasino() {
   lobbyPanel.appendChild(balCard);
 
   document.getElementById('cs-refill').onclick = () => {
-    if (COINS < 1000) { updateWallet(1000 - COINS, balCard); refreshLobbyBal(); haptic('success'); }
+    if (COINS < 1000) { updateWallet(1000 - COINS, balCard); refreshLobbyBal(); saveCoins(); haptic('success'); }
   };
   const refreshLobbyBal = () => {
     const el = document.getElementById('cs-lobby-bal');
