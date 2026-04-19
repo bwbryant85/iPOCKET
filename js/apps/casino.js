@@ -642,5 +642,5 @@ function initCasino() {
   };
 
   /* ── Init ── */
-  return () => {};
+  return () => { saveCoins(); }; // save on app close
 }
