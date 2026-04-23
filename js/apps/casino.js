@@ -191,6 +191,19 @@ cv.width = CW; cv.height = CH;
 cv.style.cssText = `width:${CW}px;height:${CH}px;display:block;touch-action:none;-webkit-tap-highlight-color:transparent;`;
 wrap.appendChild(cv);
 const ctx = cv.getContext('2d');
+// Polyfill ctx.roundRect for iOS Safari < 16
+if (!ctx.roundRect) {
+  ctx.roundRect = function(x,y,w,h,r) {
+    const R = typeof r === 'number' ? r : r[0];
+    this.beginPath();
+    this.moveTo(x+R,y);
+    this.lineTo(x+w-R,y); this.arcTo(x+w,y,x+w,y+R,R);
+    this.lineTo(x+w,y+h-R); this.arcTo(x+w,y+h,x+w-R,y+h,R);
+    this.lineTo(x+R,y+h); this.arcTo(x,y+h,x,y+h-R,R);
+    this.lineTo(x,y+R); this.arcTo(x,y,x+R,y,R);
+    this.closePath();
+  };
+}
 
 // Coin DOM overlay
 const coinLayer = document.createElement('div');
